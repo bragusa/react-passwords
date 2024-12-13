@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const transactionURL = window.location.protocol + '//southshoreweb.com/files/data';
+const transactionURL = window.location.protocol + '';
 
 const DBAdapter = (setWorking?: (status: boolean) => void) => {
   const navigate = useNavigate(); // Hook for navigation
