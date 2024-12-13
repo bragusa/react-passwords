@@ -1,6 +1,6 @@
 .Login-background {
   background-image: url('../../../public/login.png');
-  background-size: 50% auto;
+  background-size: 70% contain;
   top: 0;
   left: 0;
   height: 100vh;
@@ -11,7 +11,7 @@
 
 .Login-heading {
   color: #fff;
-  font-weight: normal;
+  font-weight: bold;
   display: flex;
   justify-content: center;
 }
@@ -53,6 +53,7 @@
   .Login-password {
     position: relative;
     height: 2.5rem;
+    width: 100%;
 
     & > .Eye {
       position: absolute;
@@ -131,7 +132,7 @@
   }
 }
 
-@media only screen and (max-width: 900px), only screen and (max-height: 900px) {
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
   .Login-background {
     background-size: contain;
     border: 1rem solid transparent;

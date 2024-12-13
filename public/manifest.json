@@ -1,6 +1,6 @@
 {
-  "short_name": "App Name",
-  "name": "App Description",
+  "short_name": "starter-pwa-app",
+  "name": "good base to create a new app",
   "icons": [
     {
       "src": "favicon.ico",

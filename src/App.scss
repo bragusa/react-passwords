@@ -37,21 +37,22 @@
       }
 
       &:hover {
-
+        background-color: gray;
         &:after {
           opacity: 1;
         }
       }
-
     }
 
     h3 {
       margin-inline-start: 1rem;
-      margin-block: 0.5rem;
+      margin-block: 0rem;
     }
   }
   
-  
+  .App-body {
+    padding: 1rem 0.5rem;
+  }  
   
 }
 

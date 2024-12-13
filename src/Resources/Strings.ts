@@ -12,8 +12,10 @@ class Strings {
       sign_out: 'Sign out',
       enter_your_credentials: 'Please enter your credentials',
       welcome_to: 'Welcome to {0}',
+      show_password: 'Show password',
+      https_require: 'You must use https!'
     },
-    es: {
+    es: { //only for example
       welcome: '¡Bienvenido {0}!',
       sign_in: 'Iniciar sesión',
       sign_out: 'Cerrar sesión',

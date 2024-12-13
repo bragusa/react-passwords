@@ -8,12 +8,14 @@ import EyeShow from '../../Resources/Images/eye-password-show.svg';
 import EyeHide from '../../Resources/Images/eye-password-hide.svg';
 import AppContext from '../../Data/Context';
 import Strings from '../../Resources/Strings';
+import { useAppContext } from '../../OuterApp';
 
 interface LoginProps {
   setAuth: React.Dispatch<React.SetStateAction<{ username: string; } | null>>;
 }
 
 const Login: React.FC<LoginProps> = ({ setAuth }) => {
+  const { setAppName } = useAppContext();
   const { setIsAuthorized } = useAuth();
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -52,6 +54,11 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
 
   useEffect(()=>{ 
     checkForCookie();
+
+    fetch('/secure/manifest.json')
+    .then((response) => response.json())
+    .then((data) => {setAppName(data.short_name)})
+    .catch((error) => console.error('Error fetching manifest:', error));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,11 +80,13 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
   };
 
   const appContext = useContext(AppContext);
-
-  return (
+  const protocol = window.location.protocol;
+  
+  return ( 
     <>
       <div className='Login-background'></div>
       <div className='Login' ref={loginForm}>
+        {protocol === 'http:' ? <h2>{Strings.get('https_require')}</h2>:<>
         <h2>Welcome to {appContext?.appName}</h2>
         <h4 className='Login-heading'>
           {Strings.get('enter_your_credentials')}
@@ -103,10 +112,10 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
               onChange={handleChange}
               maxLength={12}
             /><button style={{visibility: 'hidden', height: '1px'}} type='submit'>Login</button>
-            <button className='Eye' onClick={(evt)=>{ evt.preventDefault(); setShowPassword(prev=>!prev)}}><img src={showPassword?EyeHide:EyeShow}/></button>
+            <button className='Eye' onClick={(evt)=>{ evt.preventDefault(); setShowPassword(prev=>!prev)}}><img alt={Strings.get('show_password')} src={showPassword?EyeHide:EyeShow}/></button>
           </div>
           <button style={{float: 'left'}} type='submit'>{Strings.get('sign_in')}</button>
-        </form>
+        </form></>}
       </div>
       {errorMessage && <p className='Error'>{errorMessage}</p>}
       <Wait spinner={true} active={working}/>

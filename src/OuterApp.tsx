@@ -1,16 +1,28 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./Security/AuthContext";
 import Login from "./Security/Login/Login";
-import App from "./App";
-import Context from './Data/Context';
+import App, {User} from "./App";
+import AppContext from './Data/Context'
+
+// Custom hook to use AppContext in any component
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error('useAppContext must be used within an AppProvider');
+  }
+  return context;
+};
 
 
 const OuterApp: React.FC = () =>  {
   // eslint-disable-next-line no-unused-vars
   const [auth, setAuth] = useState<{ username: string;} | null>(null);
-  const [manifest, setManifest] = useState({appName: ''});
+  //const [manifest, setManifest] = useState({appName: ''});
+
+  const [userData, setUserData] = useState<User>({ username: null, name: null });
+  const [appName , setAppName] = useState<string>('');
 
   useEffect(() => {
 
@@ -24,19 +36,15 @@ const OuterApp: React.FC = () =>  {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    fetch('/secure/manifest.json')
-    .then((response) => response.json())
-    .then((data) => {setManifest({appName: data.short_name})})
-    .catch((error) => console.error('Error fetching manifest:', error));
-
     // Cleanup listener on component unmount
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
+
   return (
-    <Context.Provider value={manifest}>
+    <AppContext.Provider value={{ appName, userData, setAppName, setUserData }}>
       <AuthProvider>
         <Routes>
           {/* Public Route */}
@@ -56,7 +64,7 @@ const OuterApp: React.FC = () =>  {
           />
         </Routes>
       </AuthProvider>
-    </Context.Provider>
+    </AppContext.Provider>
   );
 };
 

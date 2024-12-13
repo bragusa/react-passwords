@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.useAppContext = void 0;
 const react_1 = __importStar(require("react"));
 const react_router_dom_1 = require("react-router-dom");
 const ProtectedRoute_1 = __importDefault(require("./ProtectedRoute"));
@@ -33,10 +34,21 @@ const AuthContext_1 = require("./Security/AuthContext");
 const Login_1 = __importDefault(require("./Security/Login/Login"));
 const App_1 = __importDefault(require("./App"));
 const Context_1 = __importDefault(require("./Data/Context"));
+// Custom hook to use AppContext in any component
+const useAppContext = () => {
+    const context = (0, react_1.useContext)(Context_1.default);
+    if (!context) {
+        throw new Error('useAppContext must be used within an AppProvider');
+    }
+    return context;
+};
+exports.useAppContext = useAppContext;
 const OuterApp = () => {
     // eslint-disable-next-line no-unused-vars
     const [auth, setAuth] = (0, react_1.useState)(null);
-    const [manifest, setManifest] = (0, react_1.useState)({ appName: '' });
+    //const [manifest, setManifest] = useState({appName: ''});
+    const [userData, setUserData] = (0, react_1.useState)({ username: null, name: null });
+    const [appName, setAppName] = (0, react_1.useState)('');
     (0, react_1.useEffect)(() => {
         // Listen for visibility change events
         const handleVisibilityChange = () => {
@@ -45,16 +57,12 @@ const OuterApp = () => {
             channel.close(); // Close the channel after sending the message 
         };
         document.addEventListener('visibilitychange', handleVisibilityChange);
-        fetch('/secure/manifest.json')
-            .then((response) => response.json())
-            .then((data) => { setManifest({ appName: data.short_name }); })
-            .catch((error) => console.error('Error fetching manifest:', error));
         // Cleanup listener on component unmount
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, []);
-    return (react_1.default.createElement(Context_1.default.Provider, { value: manifest },
+    return (react_1.default.createElement(Context_1.default.Provider, { value: { appName, userData, setAppName, setUserData } },
         react_1.default.createElement(AuthContext_1.AuthProvider, null,
             react_1.default.createElement(react_router_dom_1.Routes, null,
                 react_1.default.createElement(react_router_dom_1.Route, { path: "/login", element: react_1.default.createElement(Login_1.default, { setAuth: setAuth }) }),
