@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext, useState} from 'react';
+import './App.scss';
+import Wait from './Components/Wait/Wait';
+import DBAdapter from './Data/DatabaseAdapter';
+import signout from './Resources/Images/signout.png';
+import AppContext from './Data/Context'
 
 function App() {
-  return (
+  const [working, setWorking] = useState<boolean>(false);
+  const dbAdapter = DBAdapter();
+  const appContext = useContext(AppContext);
+  return <>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h3>{appContext?.appName}</h3>
+        <button className='SignOut' onClick={async ()=>{
+            setWorking(true);
+            setTimeout( async ()=>{
+              const logout = await dbAdapter.logout();
+              if(logout.status==='success'){
+                window.location.reload();
+                return;
+              }
+              setWorking(false);  
+            }, 100);
+            
+          }} ><img alt='Sign Out' src={signout}/></button>
       </header>
+      <div className="App-body">
+
+      </div>
     </div>
-  );
+    <Wait spinner={true} active={working} />
+  </>;
 }
 
 export default App;

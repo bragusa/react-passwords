@@ -1,0 +1,159 @@
+.Login-background {
+  background-image: url('../../../public/login.png');
+  background-size: 50% auto;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.Login-heading {
+  color: #fff;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+}
+
+.Login {
+  margin: auto auto;
+  opacity: 0;
+  padding: 10px;
+  padding-bottom: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity .2s;
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button[type='submit']{
+      background-color: #acacac;
+      border-radius: 20px;
+      border: 1px solid #c0c0c0;
+      text-transform: capitalize;
+      font-weight: bold;
+
+      &:active {
+        border-top: 2px solid #fff !important;
+        border-left: 2px solid #fff !important;
+      }
+
+      &:hover {
+        background-color: #777777;
+      }
+    }
+  }
+
+  .Login-password {
+    position: relative;
+    height: 2.5rem;
+
+    & > .Eye {
+      position: absolute;
+      right: 0.25rem;
+      top: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+      border-radius: 50%;
+
+      &:focus-visible {
+        outline-color: #2468cd;
+      }
+
+      img {
+        height: 20px;
+      }
+
+      &:hover {
+        background-color: #dddfdf;
+      }
+
+    }
+  }
+
+  h2 {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    height: 2rem;
+    margin-block-end: 0.5rem;
+    width: calc(100% - 0.5rem);
+  }
+
+  button {
+    height: 2rem;
+    float: inline-end;
+    margin-block-start: 0.5rem;
+    padding-inline: 3rem;
+  }
+}
+
+.Error {
+  color: #ff0000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .Login-background {
+    background-color: #282c34;
+  }
+
+  .Login-heading {
+    color: #000;
+  }
+
+  .Login {
+    h2 {
+      color: #000;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px), only screen and (max-height: 900px) {
+  .Login-background {
+    background-size: contain;
+    border: 1rem solid transparent;
+    box-sizing: border-box;
+  }
+
+  .Login {
+    background: transparent;
+    border: none;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 300px;
+
+    h2 {
+      font-size: 1.25rem;
+      margin-block: 1rem 0;
+    }
+
+    h4 {
+      margin-block: 0.5rem;
+    }
+  }
+}

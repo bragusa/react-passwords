@@ -1,0 +1,70 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .App-header {
+    font-size: calc(10px + 2vmin);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    button.SignOut {
+      margin-inline: 0.3rem;
+      border: none;
+      background-color: transparent;
+      border-radius: 50%;
+      height: 2.5rem;
+      width: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 32px;
+        filter: invert(1);
+      }
+
+      &:after {
+        color: #fff;
+        content: "Sign Out";
+        font-size: .65rem;
+        margin-top: 3rem;
+        opacity: 0;
+        position: absolute;
+        white-space: nowrap;
+      }
+
+      &:hover {
+
+        &:after {
+          opacity: 1;
+        }
+      }
+
+    }
+
+    h3 {
+      margin-inline-start: 1rem;
+      margin-block: 0.5rem;
+    }
+  }
+  
+  
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  .App {
+    background-color: #282c34;
+    color: #ffffff;
+  
+    .App-header {
+      
+    }
+    
+    
+  }
+}
+
