@@ -90,17 +90,21 @@ const Login = ({ setAuth }) => {
     }, []);
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
+        setWorking(true);
         const { username, password } = formData;
         if (!username || !password) {
+            setWorking(false);
             //setErrorMessage('Both fields are required.');
             return;
         }
         const auth = yield dbAdapter.authenticateUser(username, password);
         if (auth.status === 'failed') {
             setErrorMessage('Invalid username or password.');
+            setWorking(false);
             return;
         }
         navigateToApp(auth.expires);
+        setWorking(false);
     });
     const appContext = (0, react_1.useContext)(Context_1.default);
     const protocol = window.location.protocol;

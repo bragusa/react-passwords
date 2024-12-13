@@ -63,9 +63,11 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setWorking(true);
     const { username, password } = formData;
 
     if (!username || !password) {
+      setWorking(false);
       //setErrorMessage('Both fields are required.');
       return;
     }
@@ -74,9 +76,11 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
 
     if(auth.status === 'failed'){
       setErrorMessage('Invalid username or password.');
+      setWorking(false);
       return;
     }
     navigateToApp(auth.expires);
+    setWorking(false);
   };
 
   const appContext = useContext(AppContext);
