@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_router_dom_1 = require("react-router-dom");
-const transactionURL = window.location.protocol + '//southshoreweb.com/files/data';
+const transactionURL = window.location.protocol + '';
 const DBAdapter = (setWorking) => {
     const navigate = (0, react_router_dom_1.useNavigate)(); // Hook for navigation
     const errored = (error, context) => {
