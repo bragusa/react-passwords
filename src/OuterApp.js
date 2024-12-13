@@ -47,7 +47,7 @@ const OuterApp = () => {
         document.addEventListener('visibilitychange', handleVisibilityChange);
         fetch('/secure/manifest.json')
             .then((response) => response.json())
-            .then((data) => { debugger; setManifest({ appName: data.short_name }); })
+            .then((data) => { setManifest({ appName: data.short_name }); })
             .catch((error) => console.error('Error fetching manifest:', error));
         // Cleanup listener on component unmount
         return () => {

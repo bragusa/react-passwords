@@ -55,7 +55,6 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    debugger;
     e.preventDefault();
     const { username, password } = formData;
 

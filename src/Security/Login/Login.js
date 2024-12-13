@@ -83,7 +83,6 @@ const Login = ({ setAuth }) => {
         checkForCookie();
     }, []);
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
-        debugger;
         e.preventDefault();
         const { username, password } = formData;
         if (!username || !password) {
