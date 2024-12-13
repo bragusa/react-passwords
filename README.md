@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Template to create a small app with some authentication and such ready to go:
+
+!!!!!!must get dbconnection files to apply so that private connectivity information is set.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
