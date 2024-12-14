@@ -1,6 +1,10 @@
 # Template to create a small app with some authentication and such ready to go:
 
-!!!!!!must get dbconnection files to apply so that private connectivity information is set.
+!!!!!!must get dbAdapter files to apply so that private connectivity information is set.
+
+!!!!!Also must place data folder on web server to handle rest requests. (_connectioninfo.php should be edited)
+
+Don't forget to change the favorite icon and manifest.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
