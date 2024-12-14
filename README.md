@@ -4,7 +4,7 @@
 
 !!!!!Also must place data folder on web server to handle rest requests. (_connectioninfo.php should be edited)
 
-Don't forget to change the favorite icon and manifest.
+Don't forget to change the favorite icon. Need to fix routes in manifest.json, package.json and outerapp.tsx.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

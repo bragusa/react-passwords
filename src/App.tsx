@@ -14,7 +14,7 @@ export interface User {
 function App() {
   const [working, setWorking] = useState<boolean>(false);
   const dbAdapter = DBAdapter();
-  const { userData, appName, setUserData } = useAppContext();    
+  const { userData, appName, setUserData } = useAppContext(); 
 
   useEffect(() => {
     //subtract 60000 - 1 minute

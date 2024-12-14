@@ -1,6 +1,6 @@
 {
-  "short_name": "Secure Passwords",
-  "name": "Save and reference passwords",
+  "short_name": "PWA Starter",
+  "name": "Allowes for quick creation of a a small app",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,6 +8,6 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "/secure",
+  "start_url": "/starterpwa",
   "display": "standalone"
 }

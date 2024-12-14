@@ -71,7 +71,7 @@ const OuterApp: React.FC = () =>  {
 
 // Wrap the `OuterApp` with `Router`
 const AppWrapper: React.FC = () => (
-  <Router basename="/secure">
+  <Router basename="/starterpwa">
     <OuterApp />
   </Router>
 );
