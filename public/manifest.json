@@ -1,6 +1,6 @@
 {
-  "short_name": "starter-pwa-app",
-  "name": "good base to create a new app",
+  "short_name": "Secure Passwords",
+  "name": "Save and reference passwords",
   "icons": [
     {
       "src": "favicon.ico",

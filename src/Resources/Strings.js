@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class Strings {
     constructor() {
         this.translations = {
@@ -53,4 +51,4 @@ class Strings {
     }
 }
 // eslint-disable-next-line import/no-anonymous-default-export
-exports.default = new Strings();
+export default new Strings();

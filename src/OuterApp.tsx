@@ -5,6 +5,7 @@ import { AuthProvider } from "./Security/AuthContext";
 import Login from "./Security/Login/Login";
 import App, {User} from "./App";
 import AppContext from './Data/Context'
+import './OuterApp.scss';
 
 // Custom hook to use AppContext in any component
 export const useAppContext = () => {

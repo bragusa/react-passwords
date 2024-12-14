@@ -9,7 +9,7 @@ import EyeHide from '../../Resources/Images/eye-password-hide.svg';
 import AppContext from '../../Data/Context';
 import Strings from '../../Resources/Strings';
 import { useAppContext } from '../../OuterApp';
-
+import { FadeInFromLeft } from '../../Motion/PageNavigation';
 interface LoginProps {
   setAuth: React.Dispatch<React.SetStateAction<{ username: string; } | null>>;
 }
@@ -79,15 +79,20 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       setWorking(false);
       return;
     }
-    navigateToApp(auth.expires);
+    if(auth.status === 'success'){
+      navigateToApp(auth.expires);
+      setWorking(false);
+      return;
+    }
     setWorking(false);
+    setErrorMessage('Error: could not authenticate.');
   };
 
   const appContext = useContext(AppContext);
   const protocol = window.location.protocol;
   
   return ( 
-    <>
+    <FadeInFromLeft>
       <div className='Login-background'></div>
       <div className='Login' ref={loginForm}>
         {protocol === 'http:' ? <h2>{Strings.get('https_require')}</h2>:<>
@@ -123,7 +128,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       </div>
       {errorMessage && <p className='Error'>{errorMessage}</p>}
       <Wait spinner={true} active={working}/>
-    </>
+    </FadeInFromLeft>
   );
 };
 
